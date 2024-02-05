@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diameter Lingkaran</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+    .container12{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    .ling{
+        background-color: aqua;
+        border-radius: 100%;
+        transition: 1s;
+    }
+    @keyframes anim{
+        from{
+            opacity: 0;
+        }
+        to{
+            opacity: 100%;
+        }
+    }
+    .animated{
+        animation: anim 1s forwards;
+    }
+    </style>
+</head>
+<body style="background-color: #1b1b1b;">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+        <div class="container-fluid">
+          <a class="navbar-brand">Rumus Lingkaran</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#link">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Macam Rumus Lingkaran
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="jari.html" target="_blank">Jari-Jari</a></li>
+                  <li><a class="dropdown-item" href="diameter.html" target="_blank">Diameter</a></li>
+                  <li><a class="dropdown-item" href="luas.html" target="_blank">Luas</a></li>
+                  <li><a class="dropdown-item" href="keliling.html" target="_blank">Keliling</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </nav>
+    <!-- Isi materi -->
+    <div class="container12">
+        <h2 class="text-light">Lingkaran Matematika (Diameter)</h2>
+        <div class="input">
+            <input type="number" class="form-control" placeholder="Masukkan Diameter (cm)" id="diameter" style="width: 250px;">
+        </div>
+        <div class="hasil">
+            <div class="ling"></div>
+            <p class="has"></p>
+        </div>
+        <div class="btn" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" id="sub" style="margin-right: 5px;">Submit</button>
+            <button type="button" class="btn btn-primary" id="res" style="margin-left: 5px;">Reset</button>
+        </div>
+        <div class="btn" aria-label="Basic example">
+            <button type="button" class="btn btn-primary" id="back" onclick="back()">Back To Lobby</button>
+        </div>
+    </div>
+        <script>
+        const diameter = document.querySelector("#diameter");
+            const sub = document.querySelector("#sub");
+            const res = document.querySelector("#res");
+            const hasil = document.querySelector(".hasil");
+            const ling = document.querySelector(".ling");
+        const has = document.querySelector(".has");
+        const back = document.querySelector("#back");
+
+        sub.addEventListener("click", function(){
+            const sub = document.querySelector("#sub");
+            
+            let jari = parseFloat(diameter.value / 2).toFixed(2);
+            let luas = parseFloat(3.14 * (diameter.value)/2 * parseFloat(diameter.value)/2).toFixed(2);
+            let keliling = parseFloat(3.14 * parseFloat(diameter.value)).toFixed(2);
+            
+            ling.style.width = diameter.value + "cm";
+            ling.style.height = diameter.value + "cm";
+
+            has.innerHTML = "<li>Jari : " + jari + " cm</li><li> Luas : " + luas + " cm²</li><li> Keliling : " + keliling + " cm</li>";
+            has.style.color ="White";
+
+            ling.classList.add('animated');
+        });
+
+        res.addEventListener("click", function(){
+            const res = document.querySelector("#res");
+
+            diameter.value = "";
+            has.innerHTML = "";
+            ling.style.width = "0px";
+            ling.style.height = "0px";
+
+            ling.classList.remove("animated");
+        });
+
+        diameter.addEventListener("keypress", function(e){
+            if(e.key == "Enter"){
+                sub.click();
+            }
+        });
+        
+        back.addEventListener("click", function(){
+            const back = document.querySelector("#back");
+            
+            window.location.href = "lobby.html";
+        })
+    </script>
+    <!-- penutup materi -->
+      <div class="container">
+        <footer class="py-3 my-4 mt-5">
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3 mt-5">
+            <li id="link" class="nav-item"><a href="#" class="nav-link px-2 text-light">Home</a></li>
+            <li class="nav-item"><a href="jari.html" target="_blank" class="nav-link px-2 text-light">Jari-Jari</a></li>
+            <li class="nav-item"><a href="diameter.html" target="_blank" class="nav-link px-2 text-light">Diameter</a></li>
+            <li class="nav-item"><a href="luas.html" target="_blank" class="nav-link px-2 text-light">Luas</a></li>
+            <li class="nav-item"><a href="keliling.html" target="_blank" class="nav-link px-2 text-light">Keliling</a></li>
+          </ul>
+          <p class="text-center text-light">© XI RPL 2, Inc</p>
+        </footer>
+      </div>
+      <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
